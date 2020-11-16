@@ -45,9 +45,9 @@ public class GuessTheNumber {
         System.out.println("Enter an amount of guesses. It must be below half the range of possible numbers:");
         while(!isValidInput){
             totalGuesses = GetInput.numericInput();         //This function from GetInput class automatically checks to see if it's not an integer
-            if(totalGuesses <= Math.ceil((rangeHigh - rangeLow)/2.0) && totalGuesses > 0)       //This is valid input. Above 0 and below half the range.
-                isValidInput = true;
-            else if(totalGuesses >= (int)Math.ceil((rangeHigh - rangeLow)/2.0))                 //If the amount of guesses is positive but over half the range, throw error message.
+            if(totalGuesses <= Math.ceil((rangeHigh - rangeLow)/2) && totalGuesses > 0)       //This is valid input. Above 0 and below half the range.
+                isValidInput = true;        //BUG 1: MESSES WITH ROUNDING OF RANGE - amount of valid guesses will sometimes but invalid
+            else if(totalGuesses >= (int)Math.ceil((rangeHigh - rangeLow)/2))                 //If the amount of guesses is positive but over half the range, throw error message.
                 System.out.println("The amount of guesses must be below half the range of possible numbers!");
             else if(totalGuesses <= 0){
                 System.out.println("The amount of guesses must be above 0!");       //If the amount of guesses is negative, throw error message.
@@ -73,7 +73,7 @@ public class GuessTheNumber {
      */
     public static void guess(){
         System.out.println("Enter your guesses:");
-        int counter = totalGuesses;
+        int counter = totalGuesses-1;   //BUG 2: one fewer guess!
         while(counter != 0){
             currentGuess = GetInput.numericInput();
             if(isCorrect(currentGuess)){
@@ -98,7 +98,7 @@ public class GuessTheNumber {
      */
     public static int generateTarget(int high, int low){
         Random rand = new Random();
-        target = rand.nextInt(high - low + 1) + low;    //This calculates the range of the numbers
+        target = rand.nextInt((high-10) - low + 1) + low;    //BUG 3: RANDOM NUMBER WON'T ALWAYS GENERATE IN RANGE //This calculates the range of the numbers
         return target;
     }
 
