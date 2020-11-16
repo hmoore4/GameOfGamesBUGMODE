@@ -89,9 +89,10 @@ public class GuessTheNumber {
                 System.out.println("Incorrect! Try again. You have " + counter + " guesses remaining"); //Valid guess means decrement amount of guesses left
             }
         }
-        if(counter == 0 && !isCorrect(currentGuess))
+        if(counter == 0 && !isCorrect(currentGuess)){
             Scoreboard.computerTotalScore++;
             System.out.println("You lose! The correct number was " + target + ".");
+        }
     }
 
     /*
