@@ -77,6 +77,7 @@ public class GuessTheNumber {
         while(counter != 0){
             currentGuess = GetInput.numericInput();
             if(isCorrect(currentGuess)){
+                Scoreboard.userTotalScore++;
                 System.out.println("You win!");         //Correct guess
                 break;
             }
@@ -89,6 +90,7 @@ public class GuessTheNumber {
             }
         }
         if(counter == 0 && !isCorrect(currentGuess))
+            Scoreboard.computerTotalScore++;
             System.out.println("You lose! The correct number was " + target + ".");
     }
 
