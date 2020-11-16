@@ -44,7 +44,7 @@ public class FindTheRedThread {
     public static void chooseRedThread(int numberOfThreads){
         Random rand = new Random();
         redThread = rand.nextInt(numberOfThreads) + 1;
-        System.out.println("   " + redThread);
+        System.out.println("The Red Thread is: " + redThread);
     }
 
     /*
@@ -52,7 +52,7 @@ public class FindTheRedThread {
      * param: threadsPerTurn this param is to tell the function how many threads it should take each turn
      */
     public static void computerGuessThreads(int threadsPerTurn){
-        userTurn = false;
+        userTurn = true;        //BUG 1: POINT WILL GO TO WRONG PERSON
         int counter = threadsPerTurn;
         while(counter != 0){
             Random rand = new Random();
@@ -78,7 +78,7 @@ public class FindTheRedThread {
      * param: threadsPerTurn has the same function as the previous function. Keeps track of total threads to guess per turn
      */
     public static void userGuessThreads(int threadsPerTurn){
-        userTurn = true;
+        userTurn = false;       //BUG 1: POINTS WILL GO TO WRONG PERSON
         int counter = threadsPerTurn;
         int guessedThread = 0;
 
@@ -90,7 +90,7 @@ public class FindTheRedThread {
                 if(checkGuess(guessedThread)){      //If correct
                     break;
                 }
-                else if(remainingThreads[guessedThread-1] == 0){
+                else if(remainingThreads[guessedThread-1] == 1){        //BUG 2: should == 0. Puts the thread back into the guessable line.
                     System.out.print("Please choose a thread that hasn't been selected yet.");      //If the thread was already chosen
                 }
                 else{
@@ -151,7 +151,7 @@ public class FindTheRedThread {
         while(!validInput){
             try{
             userInput = GetInput.numericInput();
-            if(userInput >= 1 && userInput <= 10)
+            if(userInput >= 1 && userInput <= numberOfThreads/2)
                 validInput = true;
             else
                  System.out.println("The input must be between 1-10.");
@@ -161,7 +161,7 @@ public class FindTheRedThread {
             }
         }
         setThreadArray();
-        chooseRedThread(20);
+        chooseRedThread(numberOfThreads);
         while(hasWinner == false){      //This keeps the turns switching until the red thread is found
             printThreads();
             userGuessThreads(userInput);
