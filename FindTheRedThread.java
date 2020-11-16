@@ -44,6 +44,7 @@ public class FindTheRedThread {
     public static void chooseRedThread(int numberOfThreads){
         Random rand = new Random();
         redThread = rand.nextInt(numberOfThreads) + 1;
+        System.out.println("The Red Thread is: " + redThread);          //CHEATING INFO HERE
     }
 
     /*
