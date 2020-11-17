@@ -26,12 +26,14 @@ public class CoinFlip{
 	static Scanner input = new Scanner(System.in);
 
 	//establishing the computer's guess
-	if(computerguess == 1){
-		computerchoice = 'heads';
-	}else{
-		computerchoice = 'tails';
-	}
-
+	public static void compGuess(computerguess){
+   	   if(computerguess == 1){
+      	     computerchoice = "heads";
+           }else{
+            computerchoice = "tails";
+           }
+        }
+	
 	/**
 	* method that will display the rules of the game
 	* @return: void
@@ -99,8 +101,10 @@ public class CoinFlip{
   		System.out.println("Computer's Score: " + programCount);
   		if(userCount > programCount){
   			System.out.println("Congrats! You won the game!");
+			Scoreboard.userTotalScore++;
   		}else{
   			System.out.println("Bummer! You lost. Try again next time.");
+			Scoreboard.computerTotalScore++;
   		}
   }
 
