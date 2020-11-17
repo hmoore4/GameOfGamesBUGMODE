@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.InputMismatchException;
 
-public class coinflip{
+public class CoinFlip{
 
 	private static int setRounds; //stores the number of rounds the user wants to play
 	private static String userGuess; //the user's guess whether if it's heads or tails
@@ -71,9 +71,9 @@ public class coinflip{
     	System.out.println("Remember to type 'heads' for Heads and 'tails' for Tails");
         
     	userGuess = scanner.nextLine();		//Convert heads to = 1
-        if(userGuess.equals("tails")){
+        if(userGuess.equals("heads")){
 			userGuessAsInt = 1;
-			validInput = false;
+			validInput = true;
 		}
 		else if(userGuess.equals("tails")){
 			userGuessAsInt = 2;
@@ -103,12 +103,10 @@ public class coinflip{
     
         
           setRounds = GetInput.numericInput();
-            if(GetInput.isOdd(setRounds)){
+            if(!GetInput.isOdd(setRounds)){			//BUG 1 TAKES EVEN ONLY
                 System.out.println("It must be odd. Try again");	//Input checking
 			}
-			else if(setRounds <= 0){
-				System.out.println("input must be above 0!");
-			}
+			//BUG 3 can be negative
 			else{
 				validInput = true;
 			}
@@ -128,6 +126,12 @@ public class coinflip{
 		int result;
 		while(counter != 0 && !hasWinner){
 			result = flipResult();
+			if(result == 1){
+				System.out.println("The choice is heads");
+			}
+			else if(result == 2){
+				System.out.println("The choice is tails");
+			}
 			String userChoice = userguess();
 		if(userChoice.equals("heads")){
 			userGuessAsInt = 1;
@@ -146,11 +150,11 @@ public class coinflip{
 
 				}
 				if(userCount == setRounds + 1 / 2){			//Checks for winner before last round
-					Scoreboard.userTotalScore++;
+					Scoreboard.computerTotalScore++;		//BUG 2 wrong scores
 					hasWinner = true;
 				}
 				else if(programCount == setRounds + 1 /2){
-					Scoreboard.computerTotalScore++;
+					Scoreboard.userTotalScore++;
 					hasWinner = true;
 				}
 				else if(counter == 0 && userGuessAsInt == flipResult){	//Checks if final round is the determinant round
