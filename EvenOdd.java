@@ -218,7 +218,7 @@ public class EvenOdd {
     System.out.println();
     if(totalScoreEven > totalScoreOdd && user == 1){
 
-        System.out.println("\t|Congratulations you won! Your choice w Even wins!|");
+        System.out.println("\t|oh you lost! Your choice with Even wins!|");
         System.out.println("\t|Your total score is: "+totalScoreEven+" Computer total score is "+totalScoreOdd );
         Scoreboard.userEvenOrOddScore = totalScoreEven;
         Scoreboard.userTotalScore++;
@@ -230,7 +230,7 @@ public class EvenOdd {
         Scoreboard.computerTotalScore++;
 
     } else if(totalScoreEven < totalScoreOdd && user == 2){
-        System.out.println("\t|Congratulations You won! Your choice of Odd wins!");
+        System.out.println("\t|you lost! Your choice of Odd wins!");
         System.out.println("\t|Your total score is: "+totalScoreOdd+" Computer total score is "+totalScoreEven );
         Scoreboard.userEvenOrOddScore = totalScoreOdd;
         Scoreboard.userTotalScore++;
