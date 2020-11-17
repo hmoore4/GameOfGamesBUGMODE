@@ -12,7 +12,6 @@ public class GuessTheNumber {
      * Print the rules at the start of the game.
      */
     public static void printRules(){
-        public static void printRules(){
             System.out.println(" Finally, enter your numeric guesses until either the number is guessed or you run out of guesses.");
             System.out.println("\t|-------------------------------------------------------------------------------------------|");
             System.out.println("\t|                    Welcome to Guess The Number                                            |");
@@ -30,7 +29,7 @@ public class GuessTheNumber {
             System.out.println("\t|-------------------------------------------------------------------------------------------|");
             System.out.println();
             System.out.println();    
-        }
+        
     }
 
     /*
